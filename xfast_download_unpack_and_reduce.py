@@ -231,18 +231,6 @@ def download_data(built_up_list):
 
 
 
-
-        ######################################## Call FASPER LS routine and LS plotting routine ######################################################
-
-        try:
-            new_call_to_lomb_scargle_FASPER.fasper(base_dir,bas_dir + "_FASPER_results")
-        except RuntimeError:
-            logger.exception(
-                'Some runtime error has occurred in main IDL reduction routine - check IDL console logs for ObsID: ',
-                str_row)
-
-
-
         #======================================   Remove unneeded directories from main results =========================================================================
         #             try:
         #                 path_to_main_dir = base_dir + "/" + str_row
