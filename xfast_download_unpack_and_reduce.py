@@ -17,8 +17,8 @@ import psycopg2
 #global variable - path to download directory
 from timing_analysis_codes import new_call_to_lomb_scargle_FASPER
 
-base_dir = "/mnt/4tbdata/seven"
-lrztar_output_dir = "/mnt/4tbdata/seven_tarred"
+base_dir = "/mnt/4tbdata/uw_crb"
+lrztar_output_dir = "/mnt/4tbdata/uw_crb_results"
 
 
 ################################ Set up error logging facility ####################################################################### 
@@ -47,7 +47,7 @@ def fetch_all_obsIDs():
         #open cursor
         fetch_data = conn.cursor()
         #select unique obs_ids from table all_unique
-        fetch_data.execute("SELECT obs_id FROM test_cases_seven;")
+        fetch_data.execute("SELECT obs_id FROM test_cases;")
         #commit execute statement
         conn.commit()
 
@@ -120,8 +120,8 @@ def download_data(built_up_list):
             conn = psycopg2.connect("dbname=postgres user=postgres host=127.0.0.1 password=YvonneCSutton42")
             #open cursor
             cur = conn.cursor()
-            cur.execute("INSERT INTO test_cases_seven_results (obs_id) VALUES (%s)", (str_row,))
-            cur.execute("DELETE FROM test_cases_seven WHERE obs_id = %s", (str_row,))
+            cur.execute("INSERT INTO test_cases_results (obs_id) VALUES (%s)", (str_row,))
+            cur.execute("DELETE FROM test_cases WHERE obs_id = %s", (str_row,))
             conn.commit()
             conn.close()
 
