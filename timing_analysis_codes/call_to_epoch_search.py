@@ -3,10 +3,12 @@ __author__ = 'andmas'
 from subprocess import call
 import os
 
-epoch_results_dir = "/mnt/4tbdata/test_epoch_results"
+epoch_results_dir = "/mnt/4tbdata/test_epoch_results/"
 
 def epoch_search(main_path,results_path):
     results = os.listdir(main_path)
+    print "main results path passed epoch: " + main_path
+    print "stored results path passed epoch: " + results_path
     for dir_list in results:
 
         dir_string = str(dir_list)
@@ -51,7 +53,7 @@ def epoch_search(main_path,results_path):
                                 invoke_period_string = "cd " + path_for_test + " && idl -e chimax2_v2 -args " \
                                                        + path_for_test + "/" + str(items) + " " + path_for_test \
                                                        + "/" + text_gti + " " + epoch_results_dir + " " + pass_obs_id \
-                                                       + " " + "1 15" + " " + "0.2 1500" + " " + pass_detid
+                                                       + " " + "1000 20" + " " + "0.2 3600" + " " + pass_detid
                                 print invoke_period_string
                                 call(invoke_period_string, shell=True, executable='/bin/bash')
                                 print "passed idl chi-squared call"
@@ -66,5 +68,5 @@ def epoch_search(main_path,results_path):
     print "#############################################################################################"
 
 
-if __name__ == '__main__':
-    epoch_search(main_path,results_path)
+#if __name__ == '__main__':
+#    epoch_search(main_path,results_path)
