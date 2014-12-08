@@ -3,11 +3,13 @@ from subprocess import call
 import os
 
 #global variables
-fasper_base_dir = "/mnt/4tbdata/"
+#fasper_base_dir = "/mnt/4tbdata/"
 
 
 def fasper(main_path, results_path):
     print "hit FASPER!!!!"
+    print "main results FASPER path passed: " + main_path
+    print "path where FASPER results stored: " + results_path
     results = os.listdir(main_path)
 
     for dir_list in results:
@@ -62,7 +64,7 @@ def fasper(main_path, results_path):
                                 call(invoke_period_string, shell=True, executable='/bin/bash')
                                 print "passed idl call"
 
-                        return results_path
+                        #return results_path
 
     print "########################## Finished #########################################################"
     print "#############################################################################################"
@@ -73,21 +75,14 @@ def fasper(main_path, results_path):
     print "#############################################################################################"
 
 
-def plot_results(results_path, str_row):
-    #create new results dir for obsID
-    fasper_results_dir_name = fasper_base_dir + "/" + "fasper_plotted_results" + "/" + str_row + "_FASPER_results"
-    print "fasper results dir " + fasper_results_dir_name
-    make_results_dir = "cd " + results_path + " && mkdir " + fasper_results_dir_name
-    call(make_results_dir, shell=True, executable='/bin/bash')
-
+def plot_results(results_path):
     # call fasper routine
-    plot_results_string = "cd " + fasper_results_dir_name + " && idl -e plot_fasper_results -args " \
+    plot_results_string = "cd " + results_path + " && idl -e plot_fasper_results -args " \
                           + results_path + "/"
     print plot_results_string
     call(plot_results_string, shell=True, executable='/bin/bash')
 
 
-
-if __name__ == '__main__':
-    results_path = fasper(main_path,results_path)
-    plot_results(results_path)
+#if __name__ == '__main__':
+#    fasper(main_path,results_path)
+ #   plot_results(results_path)
