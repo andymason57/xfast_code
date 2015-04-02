@@ -228,8 +228,8 @@ def download_data(built_up_list):
                 if fnmatch.fnmatch(file,'*PIEVLI*.fit'):
                     event_filename = file
                     print "filename found " + event_filename
-            copy_event = "cp " + pps_dest + event_filename + " " + base_dir + "/" + obsId + "/processed/test/"
-            call(copy_event, shell=True, executable='/bin/bash')
+                    copy_event = "cp " + pps_dest + event_filename + " " + base_dir + "/" + obsId + "/processed/test/"
+                    call(copy_event, shell=True, executable='/bin/bash')
 
             #remove untarred downloaded directory
             remove_untarred = "rm -R " + base_dir + "/" + obsId + "/" + obsId
